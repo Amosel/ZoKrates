@@ -1,0 +1,56 @@
+[Custom]
+typedef string Abi;
+
+[Custom]
+typedef string ComputationResult;
+
+[Error]
+interface HolonymError {
+    Malformed();
+    MalformedJSON();
+    DeserializationFailed();
+    InterpreterFailed(string message);
+    ParseFailed(string message);
+    WitnessReadFailed(string message);
+    UnsupportedOption(GenerateProofOptions options);
+    IoError();
+    InvalidState();
+    Unsupported();
+    IllegalArgument();
+};
+
+enum Circuit {
+   "OnAddLeaf",
+   "PoseidonTwoInputs",
+   "PoseidonQuinary",
+   "ProofOfResidency",
+   "AntiSybil",
+   "CreateLeaf",
+};
+
+enum BackendParameter {
+    "Bellman",
+    "Ark",
+    "Bellperson",
+};
+
+enum SchemeParameter {
+    "G16",
+    "GM17",
+    "MARLIN",
+    "NOVA",
+};
+
+dictionary GenerateProofOptions {
+    BackendParameter backend;
+    SchemeParameter scheme;
+};
+
+
+namespace zokrates {
+    [Throws=HolonymError]
+    ComputationResult compute_witness([ByRef] sequence<u8> program, Abi abi, string args);
+
+    [Throws=HolonymError]
+    string generate_proof([ByRef] sequence<u8> program, string witness, [ByRef] sequence<u8> pk, string entropy, GenerateProofOptions options);
+};

@@ -1,4 +1,5 @@
 use crate::constants::*;
+use serde::{Deserialize, Serialize};
 use std::convert::TryFrom;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -26,7 +27,7 @@ impl std::fmt::Display for CurveParameter {
     }
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Serialize, Deserialize)]
 pub enum BackendParameter {
     #[cfg(feature = "bellman")]
     Bellman,
@@ -52,7 +53,7 @@ impl std::fmt::Display for BackendParameter {
 }
 
 #[allow(clippy::upper_case_acronyms)]
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Serialize, Deserialize)]
 pub enum SchemeParameter {
     G16,
     GM17,

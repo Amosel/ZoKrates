@@ -1,0 +1,36 @@
+[package]
+name = "zokrates_mobile"
+edition = "2021"
+version = "0.22.0"
+authors = ["Amos Elmaliah <amosel@gmail.com>"]
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["lib", "cdylib", "staticlib"]
+name = "zokrates_mobile"
+
+[dependencies]
+anyhow = "1"
+bytes = "1.0"
+uniffi = "0.22.0"
+url = "2.2"
+serde_json = "1"
+serde = "1"
+thiserror = "1.0"
+rand_0_8 = { version = "0.8", package = "rand" }
+zokrates_common = { version = "0.1", path = "../zokrates_common", default-features = false }
+zokrates_ast = { path = "../zokrates_ast", default-features = false, features = ["ark", "bellman"] }
+zokrates_ark = { path = "../zokrates_ark", default-features = false}
+zokrates_bellman = { path = "../zokrates_bellman", default-features = false}
+zokrates_interpreter = { path = "../zokrates_interpreter", default-features = false, features = ["ark", "bellman"] }
+zokrates_abi = { path = "../zokrates_abi", default-features = false, features = ["ark", "bellman"] }
+zokrates_field = { path = "../zokrates_field", default-features = false  }
+zokrates_proof_systems = { path = "../zokrates_proof_systems", default-features = false }
+
+[build-dependencies]
+uniffi_build = "0.22.0"
+
+[dev-dependencies]
+uniffi_bindgen = "0.22.0"
+uniffi_macros = "0.22.0"

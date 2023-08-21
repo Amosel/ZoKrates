@@ -1,6 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
+    "zokrates_mobile",
     "zokrates_common",
     "zokrates_core",
     "zokrates_cli",
